@@ -1,10 +1,32 @@
 package guru.springframework.spring7di;
 
+import guru.springframework.spring7di.controllers.MyController;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.context.ConfigurableApplicationContext;
 
 @SpringBootTest
 class Spring7DiApplicationTests {
+
+	@Autowired
+	ConfigurableApplicationContext applicationContext;
+
+	@Autowired
+	MyController myController;
+
+
+	@Test
+	void testGetControllerFromCtx(){
+		MyController myController = applicationContext.getBean(MyController.class);
+
+		System.out.println(myController.sayHello());
+	}
+
+	@Test
+	void testAutoWiredContoller() {
+		System.out.println(myController.sayHello());
+	}
 
 	@Test
 	void contextLoads() {
